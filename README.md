@@ -7,7 +7,13 @@ vog_asm will have the following registers:
 
 inst: the instruction pointer register
 instbuffer: holds an instruction pointer, but does not control instruction flow. Will be used for returning from functions
-ans (128 bit): will hold the result of the most recent operation
+The result of the most recent operation will be held in one of the ans registers
+ans128: 
+ans64: 
+ans32: 
+ans16: 
+ans8: 
+valid_ans: says which ans register is valid
 base: will point to the base of the current stack frame
 top: points to the top of the stack
 data*: points to a spot in memory.
@@ -27,6 +33,7 @@ vog_asm language implies the stack grows notionally upward.
 
 the following will be vog_asm commands (commands are listed as the command word followed by the aguments to it, all arguments are unsigned 64 bit ints):
 
+HALT: stops the program
 log str: str is a pointer. This command prints to the console the string that str points at
 log_ans: prints the value in ans register to the console
 malloc x: will allocate x bytes on the heap and place a pointer to them in the ans register
@@ -67,25 +74,18 @@ The following are all binary arithmetic operations. They do what they sound like
 
 
 Binary bitwise operations:
-and64
-and32
-and16
-and8
-
-or64
-or32
-or16
-or8
-
-xor64
-xor32
-xor16
-xor8
-
+&{64, 32, 16, 8}
+|{64, 32, 16, 8}
+x|{64, 32, 16, 8}
 << A B: left bitshifts the value in register A by the amount indicated in register B
 >> A B: same idea but right this time
 
 ~ reg: nots all the bits in the given register
+
+logical operations:
+and
+or
+xor
 
 Control flow
 label "name":
