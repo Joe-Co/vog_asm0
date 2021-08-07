@@ -90,10 +90,10 @@ xor8
 Control flow
 label "name":
 jmp x:
-jmp_pos x:
-jmp_neg x:
-jmp_0 x:
-jmp_!0 x:
+jmp+ x:
+jmp- x:
+jmp0 x:
+jmp!0 x:
 ret: 
 
 
